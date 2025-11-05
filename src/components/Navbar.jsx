@@ -31,12 +31,13 @@ export const Navbar = () => {
     >
       <div className="container flex items-center justify-between">
         <a
-          className="text-xl font-bold text-primary flex items-center"
+          className="text-2xl md:text-3xl font-bold text-primary flex items-center group"
           href="#hero"
         >
           <span className="relative z-10">
-            <span className="text-glow text-foreground"> PedroTech </span>{" "}
-            Portfolio
+            <span className="text-glow bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-[length:200%_auto] bg-clip-text text-transparent animate-shimmer hover:animate-none transition-all duration-300 hover:scale-110 inline-block">
+              Piyush Kumar
+            </span>
           </span>
         </a>
 

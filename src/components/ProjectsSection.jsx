@@ -3,38 +3,31 @@ import { ArrowRight, ExternalLink, Github } from "lucide-react";
 const projects = [
   {
     id: 1,
-    title: "SaaS Landing Page",
-    description: "A beautiful landing page app using React and Tailwind.",
+    title: "Portfolio Website",
+    description: "A beautiful portfolio website using React and Tailwind.",
     image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "Supabase"],
+    tags: ["React", "TailwindCSS", "EmailJS"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/piyushkr75/portfolio",
   },
   {
     id: 2,
-    title: "Orbit Analytics Dashboard",
+    title: "Movie Recommendation System",
     description:
-      "Interactive analytics dashboard with data visualization and filtering capabilities.",
+      "A movie recommendation system that recommends movies based on the user's viewing history and preferences.",
     image: "/projects/project2.png",
-    tags: ["TypeScript", "D3.js", "Next.js"],
-    demoUrl: "#",
-    githubUrl: "#",
+    tags: ["Python", "Machine Learning", "Data Science"],
+    githubUrl: "https://github.com/piyushkr75/movie_recommender_system",
   },
-  {
-    id: 3,
-    title: "E-commerce Platform",
-    description:
-      "Full-featured e-commerce platform with user authentication and payment processing.",
-    image: "/projects/project3.png",
-    tags: ["React", "Node.js", "Stripe"],
-    demoUrl: "#",
-    githubUrl: "#",
-  },
+  
 ];
 
 export const ProjectsSection = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section
+      id="projects"
+      className="py-24 px-4 relative bg-linear-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-background dark:via-background dark:to-background"
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
           {" "}
@@ -50,7 +43,7 @@ export const ProjectsSection = () => {
           {projects.map((project, key) => (
             <div
               key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover"
+              className="group bg-linear-to-br from-white to-emerald-50/50 dark:from-card dark:to-card rounded-lg overflow-hidden shadow-xs card-hover border border-border/50"
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -96,13 +89,21 @@ export const ProjectsSection = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="flex justify-center space-x-1 items-center text-center mt-12">
           <a
             className="cosmic-button w-fit flex items-center mx-auto gap-2"
             target="_blank"
-            href="https://github.com/machadop1407"
+            href="https://github.com/piyushkr75"
           >
             Check My Github <ArrowRight size={16} />
+          </a>
+
+          <a
+            className="cosmic-button w-fit flex items-center mx-auto gap-2"
+            target="_blank"
+            href="https://leetcode.com/u/piyushkr75/"
+          >
+            Check My LeetCode <ArrowRight size={16} />
           </a>
         </div>
       </div>
