@@ -64,12 +64,7 @@ export const Footer = () => {
           </a>
         </div>
 
-        {/* Bottom decorative element */}
-        <div className="mt-8 pt-6 border-t border-border/30">
-          <p className="text-xs text-center text-muted-foreground/60">
-            Built with React, Vite & Tailwind CSS
-          </p>
-        </div>
+        
       </div>
     </footer>
   );
