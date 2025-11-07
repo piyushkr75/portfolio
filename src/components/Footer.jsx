@@ -13,7 +13,7 @@ export const Footer = () => {
           {/* Left section - Copyright */}
           <div className="flex flex-col items-center md:items-start gap-2">
             <p className="text-sm text-muted-foreground text-center md:text-left">
-              © {currentYear} Made with{" "}
+              © {currentYear} Made{" "}
              
               by{" "}
               <span className="text-primary font-semibold">Piyush Kumar</span>
