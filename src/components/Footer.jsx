@@ -14,7 +14,7 @@ export const Footer = () => {
           <div className="flex flex-col items-center md:items-start gap-2">
             <p className="text-sm text-muted-foreground text-center md:text-left">
               © {currentYear} Made with{" "}
-              <Heart className="inline-block h-3 w-3 text-red-500 fill-red-500 mx-1" />{" "}
+             
               by{" "}
               <span className="text-primary font-semibold">Piyush Kumar</span>
             </p>
