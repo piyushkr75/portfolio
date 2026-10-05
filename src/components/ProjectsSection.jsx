@@ -1,110 +1,268 @@
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, GitBranch, Terminal } from "lucide-react";
 
 const projects = [
   {
     id: 1,
-    title: "Portfolio Website",
-    description: "A beautiful portfolio website using React and Tailwind.",
-    image: "/projects/project1.png",
-    tags: ["React", "TailwindCSS", "EmailJS"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/piyushkr75/portfolio",
+    title: "CodeSense AI",
+    repoName: "piyushkr75/CodeSense-AI",
+    subtitle: "AI-Powered Code Reviewer",
+    description:
+      "A full-stack AI code reviewer that analyzes source code and provides intelligent improvement suggestions, code conversions, complexity analysis, and personalized learning resources.",
+    image: "/projects/codesense_ai.jpg",
+    tags: [
+      "React 19",
+      "Vite",
+      "Tailwind CSS",
+      "Node.js",
+      "Express.js",
+      "Groq SDK",
+      "Axios",
+      "Prism.js",
+    ],
+    highlights: [
+      "AI-powered code review and improvement suggestions",
+      "Multi-language code analysis with complexity evaluation",
+      "Code conversion to Java, C, and C++",
+      "Browser-based syntax-highlighted code editor & file upload",
+    ],
+    githubUrl: "https://github.com/piyushkr75/CodeSense-AI",
+    demoUrl: null,
   },
   {
     id: 2,
-    title: "Movie Recommendation System",
+    title: "HealthPulse",
+    repoName: "piyushkr75/HealthPulse-Hospital-Patient-Monitoring-System",
+    subtitle: "Hospital Patient Monitoring System",
     description:
-      "A movie recommendation system that recommends movies based on the user's viewing history and preferences.",
-    image: "/projects/project2.png",
-    tags: ["Python", "Machine Learning", "Data Science"],
-    githubUrl: "https://github.com/piyushkr75/movie_recommender_system",
+      "A Qt 6 desktop application for monitoring simulated hospital patient vitals through a real-time dashboard.",
+    image: "/projects/healthpulse.jpg",
+    tags: ["C++17", "Qt 6", "CMake", "Qt Widgets", "Qt Charts"],
+    highlights: [
+      "Real-time simulated heart-rate, SpO2, and temperature monitoring",
+      "Blood-pressure and respiration monitoring with patient alerts",
+      "Patient records, status management, and activity logs",
+      "Modular architecture with controller, sensor, and logger layers",
+    ],
+    githubUrl:
+      "https://github.com/piyushkr75/HealthPulse-Hospital-Patient-Monitoring-System",
+    demoUrl: null,
   },
-  
+  {
+    id: 3,
+    title: "HireHub",
+    repoName: "piyushkr75/HireHub-Job-Portal",
+    subtitle: "Job Portal",
+    description:
+      "Developed a full-stack job portal using the MERN stack with secure JWT authentication and RESTful APIs.",
+    image: "/projects/hirehub.jpg",
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    highlights: [
+      "JWT authentication with role-based access",
+      "RESTful API design with MVC architecture",
+      "CRUD operations with input validation",
+      "Responsive React UI with MongoDB optimization",
+    ],
+    githubUrl: "https://github.com/piyushkr75",
+    demoUrl: null,
+  },
+  {
+    id: 4,
+    title: "StockSense Pro",
+    repoName: "piyushkr75/StockSense-Pro",
+    subtitle: "Stock Analysis Platform",
+    description:
+      "Developed a full-stack stock analysis platform with a FastAPI backend and React frontend, integrating REST APIs for market and news data.",
+    image: "/projects/stocksense.jpg",
+    tags: ["Python", "FastAPI", "React", "FinBERT", "Supabase"],
+    highlights: [
+      "FastAPI backend with REST endpoints",
+      "FinBERT-based financial sentiment analysis",
+      "Stock prediction APIs with health-check endpoints",
+      "Market-data integration and news processing",
+    ],
+    githubUrl: "https://github.com/piyushkr75",
+    demoUrl: null,
+  },
+  {
+    id: 5,
+    title: "AI Therapist",
+    repoName: "piyushkr75/AI-Therapist",
+    subtitle: "Conversational Mental Health Assistant",
+    description:
+      "Developed an AI-powered conversational assistant using LangChain, LLMs, and Vector Databases for context-aware interactions.",
+    image: "/projects/ai_therapist.jpg",
+    tags: ["Python", "LangChain", "LLMs", "Vector Database"],
+    highlights: [
+      "Prompt engineering with conversation memory",
+      "Semantic search via vector database storage",
+      "Personalized contextual interactions",
+      "Retrieval-augmented generation optimization",
+    ],
+    githubUrl: "https://github.com/piyushkr75",
+    demoUrl: null,
+  },
+  {
+    id: 6,
+    title: "Bank Statement Extractor",
+    repoName: "piyushkr75/bank_statement-extractor",
+    subtitle: "AI Document / Data Extraction",
+    description:
+      "An application that extracts transaction data from bank statement images or PDF files and converts the extracted information into a downloadable CSV format.",
+    image: "/projects/bank_statement_extractor.jpg",
+    tags: ["Node.js", "Gemini API", "Express.js", "Multer"],
+    highlights: [
+      "Upload bank statements as JPEG, PNG, WEBP, or PDF",
+      "Extract transaction information using Gemini API",
+      "Display extracted transactions in a structured table",
+      "Download extracted results as CSV (date, description, amount, balance)",
+    ],
+    githubUrl: "https://github.com/piyushkr75/bank_statement-extractor",
+    demoUrl: null,
+  },
+  {
+    id: 7,
+    title: "Movie Recommender System",
+    repoName: "piyushkr75/movie_recommender_system",
+    subtitle: "Machine Learning / Recommendation System",
+    description:
+      "A content-based movie recommendation system that suggests similar movies using movie tags and descriptions.",
+    image: "/projects/movie_recommender.png",
+    tags: ["Python", "Streamlit", "Pandas", "NumPy", "Scikit-learn"],
+    highlights: [
+      "Content-based filtering using movie tags and metadata",
+      "Text vectorization with CountVectorizer",
+      "Cosine similarity calculation for top-10 movie recommendations",
+      "Interactive Streamlit interface with cached similarity matrix",
+    ],
+    githubUrl: "https://github.com/piyushkr75/movie_recommender_system",
+    demoUrl: null,
+  },
 ];
+
+const ProjectCard = ({ project }) => {
+  return (
+    <div className="group card-base overflow-hidden card-hover flex flex-col justify-between border border-border/80 shadow-md">
+      <div>
+        {/* Engineering Window Header */}
+        <div className="code-window-header border-b border-border/70 py-2 px-3.5 bg-muted/50">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block" />
+            <span className="ml-2 font-mono text-[11px] text-muted-foreground truncate max-w-[200px]">
+              {project.repoName}
+            </span>
+          </div>
+          <div className="flex items-center gap-1 text-[10px] font-mono text-muted-foreground/60">
+            <GitBranch size={11} className="text-primary/70" />
+            <span>main</span>
+          </div>
+        </div>
+
+        {/* Dashboard Image Frame */}
+        <div className="h-48 overflow-hidden bg-black/40 border-b border-border/50 relative">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent opacity-40 pointer-events-none" />
+        </div>
+
+        {/* Card Content */}
+        <div className="p-5 pb-0">
+          {/* Tech Badges */}
+          <div className="flex flex-wrap gap-1.5 mb-3">
+            {project.tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-2 py-0.5 text-[11px] font-mono font-medium text-primary bg-primary/10 border border-primary/20 rounded"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {/* Title + Subtitle */}
+          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
+            {project.title}
+          </h3>
+          <p className="text-xs font-mono text-muted-foreground font-medium mt-0.5 mb-3">
+            &gt; {project.subtitle}
+          </p>
+
+          {/* Description */}
+          <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+            {project.description}
+          </p>
+
+          {/* Key Engineering Features */}
+          <ul className="space-y-1.5 mb-4">
+            {project.highlights.map((point) => (
+              <li
+                key={point}
+                className="text-xs text-muted-foreground flex items-start gap-2"
+              >
+                <span className="text-primary font-mono text-xs select-none">→</span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Card Action Buttons */}
+      <div className="p-5 pt-0">
+        <div className="flex items-center gap-2.5 pt-3 border-t border-border/60">
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 border border-border transition-all duration-200"
+          >
+            <Github size={13} />
+            <span>view_code</span>
+          </a>
+          {project.demoUrl && (
+            <a
+              href={project.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-white bg-primary hover:bg-primary/90 transition-all duration-200"
+            >
+              <ExternalLink size={13} />
+              <span>live_demo</span>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="py-24 px-4 relative bg-linear-to-br from-emerald-50 via-teal-50 to-cyan-50 dark:from-background dark:via-background dark:to-background"
+      className="section-padding relative"
     >
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          {" "}
-          Featured <span className="text-primary"> Projects </span>
-        </h2>
-
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
+        {/* Section Heading: 03. Projects */}
+        <div className="flex items-center gap-3 mb-3">
+          <span className="font-mono text-primary text-sm sm:text-base font-semibold">03.</span>
+          <h2 className="section-heading text-foreground mb-0">
+            Featured <span className="text-primary font-mono">//</span> Projects
+          </h2>
+          <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
+        </div>
+        <p className="text-sm font-mono text-muted-foreground mb-12 max-w-2xl">
+          &gt; End-to-end engineering projects across full-stack web development, backend APIs, desktop systems, and AI integration.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, key) => (
-            <div
-              key={key}
-              className="group bg-linear-to-br from-white to-emerald-50/50 dark:from-card dark:to-card rounded-lg overflow-hidden shadow-xs card-hover border border-border/50"
-            >
-              <div className="h-48 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag) => (
-                    <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-
-                <h3 className="text-xl font-semibold mb-1"> {project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
-                </p>
-                <div className="flex justify-between items-center">
-                  <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <ExternalLink size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
-                      <Github size={20} />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
-
-        <div className="flex justify-center space-x-1 items-center text-center mt-12">
-          <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
-            target="_blank"
-            href="https://github.com/piyushkr75"
-          >
-            Check My Github <ArrowRight size={16} />
-          </a>
-
-          <a
-            className="cosmic-button w-fit flex items-center mx-auto gap-2"
-            target="_blank"
-            href="https://leetcode.com/u/piyushkr75/"
-          >
-            Check My LeetCode <ArrowRight size={16} />
-          </a>
         </div>
       </div>
     </section>

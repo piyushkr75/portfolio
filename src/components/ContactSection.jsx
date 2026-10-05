@@ -1,18 +1,20 @@
-import { Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, Phone, Github, Linkedin, Send, Terminal, MessageSquare, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 export const ContactSection = () => {
   const { toast } = useToast();
+  const formRef = useRef(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    // Get EmailJS credentials from environment variables
+    // Prevent duplicate submissions
+    if (isSubmitting) return;
+
     const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
     const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
@@ -21,173 +23,265 @@ export const ContactSection = () => {
       toast({
         title: "Configuration Error",
         description:
-          "EmailJS credentials are not configured. Please check your environment variables.",
+          "EmailJS credentials are missing. Please ensure VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, and VITE_EMAILJS_PUBLIC_KEY are set.",
         variant: "destructive",
       });
-      setIsSubmitting(false);
       return;
     }
 
-    emailjs
-      .sendForm(serviceID, templateID, e.target, publicKey)
-      .then(() => {
+    setIsSubmitting(true);
+
+    try {
+      const result = await emailjs.sendForm(
+        serviceID,
+        templateID,
+        formRef.current,
+        {
+          publicKey: publicKey,
+        }
+      );
+
+      if (result.status === 200 || result.text === "OK") {
         toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
+          title: "Message Sent Successfully!",
+          description: "Thank you for reaching out. Your message has been sent to Piyush.",
         });
-        e.target.reset();
-        setIsSubmitting(false);
-      })
-      .catch((error) => {
-        toast({
-          title: "Error",
-          description: "Failed to send message. Please try again.",
-          variant: "destructive",
-        });
-        console.error("EmailJS error:", error);
-        setIsSubmitting(false);
+        // Reset form only on successful delivery
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+      } else {
+        throw new Error(result.text || "Failed to dispatch message");
+      }
+    } catch (error) {
+      console.error("EmailJS dispatch error:", error);
+      let errorMsg =
+        error?.text ||
+        error?.message ||
+        "Failed to send email. Please try again or reach out directly at piyushkr865@gmail.com";
+
+      if (error?.status === 412 || String(error?.text).includes("Gmail_API")) {
+        errorMsg =
+          "Email service re-authentication required (HTTP 412). Please reconnect your Gmail account in the EmailJS dashboard.";
+      }
+
+      toast({
+        title: "Failed to Send Message",
+        description: errorMsg,
+        variant: "destructive",
       });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section
       id="contact"
-      className="py-24 px-4 relative bg-linear-to-br from-purple-50 via-pink-50 to-rose-50 dark:from-background dark:via-background dark:to-background"
+      className="section-padding relative"
     >
       <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-foreground">
-          Get In <span className="text-primary">Touch</span>
-        </h2>
+        {/* Section Heading: 05. Contact */}
+        <div className="flex items-center gap-3 mb-3">
+          <span className="font-mono text-primary text-sm sm:text-base font-semibold">05.</span>
+          <h2 className="section-heading text-foreground mb-0">
+            Get In <span className="text-primary font-mono">//</span> Touch
+          </h2>
+          <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
+        </div>
+        <p className="text-sm font-mono text-muted-foreground mb-12 max-w-2xl">
+          &gt; Open for software engineering internships, entry-level roles, and technical collaborations.
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8">
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">
-              Contact Information
-            </h3>
+        {/* Terminal Header Box */}
+        <div className="card-base border border-border/80 overflow-hidden mb-8 shadow-sm">
+          <div className="code-window-header py-2 px-3.5 bg-muted/60">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+              <span className="ml-2 font-mono text-xs text-muted-foreground flex items-center gap-1.5">
+                <Terminal size={12} className="text-primary" />
+                <span>contact-session</span>
+              </span>
+            </div>
+            <span className="text-[10px] font-mono text-emerald-400">
+              ● ready
+            </span>
+          </div>
 
-            <div className="space-y-6">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-foreground">Email</h4>
-                  <a
-                    href="mailto:piyushkr865@gmail.com"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    piyushkr865@gmail.com
-                  </a>
-                </div>
+          <div className="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 bg-card/90">
+            <div className="text-emerald-400 font-bold">$ ./contact-piyush</div>
+            <p className="text-muted-foreground text-xs sm:text-sm">
+              &quot;Ready to build something impactful? Let&apos;s connect and discuss software engineering, full-stack systems, or opportunities.&quot;
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          {/* Left Column: Direct Developer Channels */}
+          <div className="md:col-span-5 space-y-6">
+            <div>
+              <h3 className="text-base font-bold text-foreground mb-1 font-mono">
+                Piyush Kumar
+              </h3>
+              <p className="text-xs font-mono text-primary">
+                B.Tech Information Science &amp; Engineering
+              </p>
+              <p className="text-xs font-mono text-muted-foreground mt-0.5">
+                Siddaganga Institute of Technology, Tumakuru
+              </p>
+            </div>
+
+            {/* Direct Email */}
+            <div className="card-base p-3.5 border border-border/70 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <Mail size={15} />
               </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-foreground">Phone</h4>
-                  <a
-                    href="tel:+919507972976"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    +919507972976
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10 dark:bg-primary/20">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h4 className="font-medium text-foreground">Location</h4>
-                  <p className="text-muted-foreground">
-                    Tumakuru, Karnataka, India
-                  </p>
-                </div>
+              <div className="overflow-hidden">
+                <p className="text-[10px] font-mono text-muted-foreground uppercase">Email</p>
+                <a
+                  href="mailto:piyushkr865@gmail.com"
+                  className="text-xs font-mono text-foreground hover:text-primary transition-colors truncate block"
+                >
+                  piyushkr865@gmail.com
+                </a>
               </div>
             </div>
 
-            <div className="pt-8">
-              <h4 className="font-medium mb-4 text-foreground">
-                Connect With Me
-              </h4>
-              <div className="flex space-x-4  justify-center">
+            {/* Direct Phone */}
+            <div className="card-base p-3.5 border border-border/70 flex items-center gap-3">
+              <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center text-primary shrink-0">
+                <Phone size={15} />
+              </div>
+              <div>
+                <p className="text-[10px] font-mono text-muted-foreground uppercase">Phone</p>
+                <a
+                  href="tel:+919507972976"
+                  className="text-xs font-mono text-foreground hover:text-primary transition-colors"
+                >
+                  +91-9507972976
+                </a>
+              </div>
+            </div>
+
+            {/* Social Icons: GitHub | LinkedIn | LeetCode | Email */}
+            <div className="space-y-2 pt-1">
+              <p className="text-[11px] font-mono text-muted-foreground uppercase tracking-wider">
+                Profiles &amp; Social
+              </p>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/piyushkr75"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  aria-label="GitHub Profile"
+                  title="GitHub Profile"
+                >
+                  <Github size={18} />
+                </a>
                 <a
                   href="https://www.linkedin.com/in/piyush-kumar-41883a303/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="p-3 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  aria-label="LinkedIn Profile"
+                  title="LinkedIn Profile"
                 >
-                  <Linkedin />
+                  <Linkedin size={18} />
                 </a>
                 <a
-                  href="https://www.instagram.com/iam_piyushh12/?hl=en"
+                  href="https://leetcode.com/piyushkr75"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-foreground hover:text-primary transition-colors"
+                  className="p-3 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  aria-label="LeetCode Profile"
+                  title="LeetCode Profile"
                 >
-                  <Instagram />
+                  <img
+                    src="/icons/leetcode.svg"
+                    alt="LeetCode"
+                    className="w-[18px] h-[18px] object-contain"
+                  />
+                </a>
+                <a
+                  href="mailto:piyushkr865@gmail.com"
+                  className="p-3 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  aria-label="Send Email"
+                  title="Send Email"
+                >
+                  <Mail size={18} />
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="bg-linear-to-br from-white to-purple-50/50 dark:from-card dark:to-card p-8 rounded-lg shadow-xs border border-border/50">
-            <h3 className="text-2xl font-semibold mb-6 text-foreground">
-              Send a Message
-            </h3>
+          {/* Right Column: IDE Form */}
+          <div className="md:col-span-7 card-base p-6 border border-border/80 shadow-md">
+            <div className="flex items-center gap-2 pb-3 mb-5 border-b border-border/60">
+              <MessageSquare size={14} className="text-primary" />
+              <h3 className="text-xs font-mono font-semibold text-foreground uppercase tracking-wider">
+                Send Message / Dispatch
+              </h3>
+            </div>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form ref={formRef} className="space-y-4 font-mono text-xs" onSubmit={handleSubmit}>
+              {/* Fallback metadata fields for EmailJS template auto-mapping */}
+              <input type="hidden" name="to_name" value="Piyush Kumar" />
+              <input type="hidden" name="to_email" value="piyushkr865@gmail.com" />
+
               <div>
                 <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2 text-foreground"
+                  htmlFor="contact-name"
+                  className="block text-[11px] text-muted-foreground mb-1.5"
                 >
-                  Your Name
+                  Name <span className="text-primary">*</span>
                 </label>
                 <input
                   type="text"
-                  id="name"
+                  id="contact-name"
                   name="from_name"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="Your Name"
+                  disabled={isSubmitting}
+                  className="w-full px-3.5 py-2.5 rounded-md border border-border bg-muted/40 text-foreground text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-sans disabled:opacity-50"
+                  placeholder="Recruiter / Engineer Name"
                 />
               </div>
 
               <div>
                 <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2 text-foreground"
+                  htmlFor="contact-email"
+                  className="block text-[11px] text-muted-foreground mb-1.5"
                 >
-                  Your Email
+                  Email <span className="text-primary">*</span>
                 </label>
                 <input
                   type="email"
-                  id="email"
+                  id="contact-email"
                   name="reply_to"
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-                  placeholder="example@gmail.com"
+                  disabled={isSubmitting}
+                  className="w-full px-3.5 py-2.5 rounded-md border border-border bg-muted/40 text-foreground text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-sans disabled:opacity-50"
+                  placeholder="contact@company.com"
                 />
               </div>
 
               <div>
                 <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2 text-foreground"
+                  htmlFor="contact-message"
+                  className="block text-[11px] text-muted-foreground mb-1.5"
                 >
-                  Your Message
+                  Message <span className="text-primary">*</span>
                 </label>
                 <textarea
-                  id="message"
+                  id="contact-message"
                   name="message"
                   rows={4}
                   required
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Type your message here..."
+                  disabled={isSubmitting}
+                  className="w-full px-3.5 py-2.5 rounded-md border border-border bg-muted/40 text-foreground text-xs focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary resize-none transition-all font-sans disabled:opacity-50"
+                  placeholder="Project inquiry, role details, or opportunity..."
                 />
               </div>
 
@@ -195,12 +289,21 @@ export const ContactSection = () => {
                 type="submit"
                 disabled={isSubmitting}
                 className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2",
-                  isSubmitting && "opacity-50 cursor-not-allowed"
+                  "btn-primary w-full text-xs justify-center",
+                  isSubmitting && "opacity-60 cursor-not-allowed pointer-events-none"
                 )}
               >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 size={13} className="animate-spin" />
+                    <span>dispatching_message...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Send Message</span>
+                    <Send size={13} />
+                  </>
+                )}
               </button>
             </form>
           </div>

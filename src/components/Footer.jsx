@@ -1,70 +1,89 @@
-import { ArrowUp, Heart, Linkedin, Instagram, Github } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-12 px-4 bg-linear-to-br from-card via-card to-card/50 dark:from-background dark:via-background dark:to-background border-t border-border/50 mt-12">
-      {/* Decorative gradient line */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+    <footer className="relative py-12 px-4 bg-card/95 border-t border-border/80 font-mono text-xs">
+      {/* Top subtle cyan/indigo accent border line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      <div className="container mx-auto max-w-6xl">
+      <div className="container mx-auto max-w-5xl">
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-          {/* Left section - Copyright */}
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <p className="text-sm text-muted-foreground text-center md:text-left">
-              © {currentYear} Made{" "}
-             
-              by{" "}
-              <span className="text-primary font-semibold">Piyush Kumar</span>
+          {/* Left: Dev Logo + Info */}
+          <div className="text-center md:text-left space-y-1">
+            <div className="flex items-center justify-center md:justify-start gap-2">
+              <span className="text-primary font-bold">&lt;PK /&gt;</span>
+              <span className="font-semibold text-foreground">Piyush Kumar</span>
+            </div>
+            <p className="text-[11px] text-muted-foreground">
+              B.Tech Information Science &amp; Engineering • SIT Tumakuru
             </p>
-            <p className="text-xs text-muted-foreground/70">
-              All rights reserved.
-            </p>
+
           </div>
 
-          {/* Center section - Social Links */}
-          <div className="flex items-center gap-4">
-            <a
-              href="https://www.linkedin.com/in/piyush-kumar-41883a303/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-primary/10 dark:bg-primary/20 text-foreground hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-all duration-300 hover:scale-110"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={18} />
-            </a>
-            <a
-              href="https://www.instagram.com/iam_piyushh12/?hl=en"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full bg-primary/10 dark:bg-primary/20 text-foreground hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-all duration-300 hover:scale-110"
-              aria-label="Instagram"
-            >
-              <Instagram size={18} />
-            </a>
+          {/* Center: Social / Profile Icons: GitHub | LinkedIn | LeetCode | Email */}
+          <div className="flex items-center gap-2">
             <a
               href="https://github.com/piyushkr75"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full bg-primary/10 dark:bg-primary/20 text-foreground hover:text-primary hover:bg-primary/20 dark:hover:bg-primary/30 transition-all duration-300 hover:scale-110"
-              aria-label="GitHub"
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted border border-transparent hover:border-border transition-all flex items-center justify-center"
+              aria-label="GitHub Profile"
+              title="GitHub Profile"
             >
-              <Github size={18} />
+              <Github size={16} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/piyush-kumar-41883a303/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted border border-transparent hover:border-border transition-all flex items-center justify-center"
+              aria-label="LinkedIn Profile"
+              title="LinkedIn Profile"
+            >
+              <Linkedin size={16} />
+            </a>
+            <a
+              href="https://leetcode.com/piyushkr75"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted border border-transparent hover:border-border transition-all flex items-center justify-center"
+              aria-label="LeetCode Profile"
+              title="LeetCode Profile"
+            >
+              <img
+                src="/icons/leetcode.svg"
+                alt="LeetCode"
+                className="w-4 h-4 object-contain"
+              />
+            </a>
+            <a
+              href="mailto:piyushkr865@gmail.com"
+              className="p-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted border border-transparent hover:border-border transition-all flex items-center justify-center"
+              aria-label="Send Email"
+              title="Send Email"
+            >
+              <Mail size={16} />
             </a>
           </div>
 
-          {/* Right section - Back to top */}
-          <a
-            href="#hero"
-            className="group p-3 rounded-full bg-primary/10 dark:bg-primary/20 hover:bg-primary/20 dark:hover:bg-primary/30 text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-            aria-label="Back to top"
-          >
-            <ArrowUp size={20} className="group-hover:animate-bounce" />
-          </a>
+          {/* Right: Copyright & Back to Top */}
+          <div className="flex items-center gap-4 text-muted-foreground">
+            <span className="text-[11px]">
+              © {currentYear} Piyush Kumar
+            </span>
+            <a
+              href="#hero"
+              className="p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-muted border border-border/60 transition-all flex items-center gap-1"
+              aria-label="Back to top"
+              title="Return to top"
+            >
+              <ArrowUp size={13} />
+              <span className="text-[10px] uppercase">top</span>
+            </a>
+          </div>
         </div>
-
-        
       </div>
     </footer>
   );

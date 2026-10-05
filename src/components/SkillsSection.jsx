@@ -1,73 +1,153 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Code2, Layout, Server, Database, Wrench, Layers } from "lucide-react";
 
-const skills = [
-  // Frontend
-  { name: "HTML/CSS", category: "frontend" },
-  { name: "JavaScript", category: "frontend" },
-  { name: "React", category: "frontend" },
-  { name: "Tailwind CSS", category: "frontend" },
-
-  // Backend
-  { name: "Node.js", category: "backend" },
-  { name: "Express", category: "backend" },
-  { name: "MongoDB", category: "backend" },
-  { name: "MySQL", category: "backend" },
-
-  // Languages
-  { name: "C", category: "languages" },
-  { name: "C++", category: "languages" },
-  { name: "Python", category: "languages" },
-  { name: "SQL", category: "languages" },
-
-  // Tools
-  { name: "Git/GitHub", category: "tools" },
-  { name: "VS Code", category: "tools" },
+const skillCategories = [
+  {
+    id: "languages",
+    name: "Languages",
+    code: "LANG",
+    icon: Code2,
+    skills: ["C++", "C", "Python", "JavaScript", "HTML", "CSS"],
+  },
+  {
+    id: "frontend",
+    name: "Frontend",
+    code: "CLIENT",
+    icon: Layout,
+    skills: ["React.js", "HTML", "CSS", "Tailwind CSS"],
+  },
+  {
+    id: "backend",
+    name: "Backend",
+    code: "SERVER",
+    icon: Server,
+    skills: ["Node.js", "Express.js", "FastAPI", "REST APIs"],
+  },
+  {
+    id: "databases",
+    name: "Databases",
+    code: "DATA",
+    icon: Database,
+    skills: ["MongoDB", "MySQL", "Supabase"],
+  },
+  {
+    id: "devops",
+    name: "DevOps & Tools",
+    code: "OPS",
+    icon: Wrench,
+    skills: [
+      "Docker",
+      "Kubernetes",
+      "Kafka",
+      "CI/CD",
+      "Git",
+      "GitHub",
+      "Linux",
+      "Postman",
+    ],
+  },
 ];
-
-const categories = ["all", "frontend", "backend", "languages", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
-  return (
-    <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-primary"> Skills</span>
-        </h2>
+  const displayCategories =
+    activeCategory === "all"
+      ? skillCategories
+      : skillCategories.filter((cat) => cat.id === activeCategory);
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(category)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
-                activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-forefround hover:bd-secondary"
-              )}
-            >
-              {category}
-            </button>
-          ))}
+  return (
+    <section
+      id="skills"
+      className="section-padding relative"
+    >
+      <div className="container mx-auto max-w-5xl">
+        {/* Section Heading: 02. Skills */}
+        <div className="flex items-center gap-3 mb-3">
+          <span className="font-mono text-primary text-sm sm:text-base font-semibold">02.</span>
+          <h2 className="section-heading text-foreground mb-0">
+            Technical <span className="text-primary font-mono">//</span> Stack
+          </h2>
+          <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
+        </div>
+        <p className="text-sm font-mono text-muted-foreground mb-10 max-w-2xl">
+          &gt; Technologies, runtimes, and developer tooling used in building production software.
+        </p>
+
+        {/* Category filters */}
+        <div className="flex flex-wrap items-center gap-2 mb-10 font-mono text-xs">
+          <button
+            onClick={() => setActiveCategory("all")}
+            className={cn(
+              "px-3.5 py-1.5 rounded-md transition-all duration-200 border flex items-center gap-1.5",
+              activeCategory === "all"
+                ? "bg-primary text-white border-primary shadow-sm"
+                : "bg-card text-muted-foreground hover:text-foreground border-border hover:border-primary/40"
+            )}
+          >
+            <Layers size={13} />
+            <span>all_stack</span>
+          </button>
+          {skillCategories.map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveCategory(cat.id)}
+                className={cn(
+                  "px-3.5 py-1.5 rounded-md transition-all duration-200 border flex items-center gap-1.5",
+                  activeCategory === cat.id
+                    ? "bg-primary text-white border-primary shadow-sm"
+                    : "bg-card text-muted-foreground hover:text-foreground border-border hover:border-primary/40"
+                )}
+              >
+                <Icon size={13} />
+                <span>{cat.name.toLowerCase().replace(/ & /g, "_")}</span>
+              </button>
+            );
+          })}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-linear-to-br from-blue-50 to-indigo-50 dark:from-card dark:to-card p-6 rounded-lg shadow-lg border border-border/50 card-hover text-center group backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
-            >
-              <h3 className="font-semibold text-lg group-hover:text-primary transition-colors duration-300">
-                {skill.name}
-              </h3>
-            </div>
-          ))}
+        {/* Skill grid by category cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {displayCategories.map((cat) => {
+            const Icon = cat.icon;
+            return (
+              <div
+                key={cat.id}
+                className="card-base p-5 border border-border/80 card-hover flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between pb-3 mb-4 border-b border-border/50">
+                    <div className="flex items-center gap-2">
+                      <div className="w-7 h-7 rounded bg-primary/10 flex items-center justify-center text-primary">
+                        <Icon size={15} />
+                      </div>
+                      <h3 className="text-sm font-semibold text-foreground font-mono">
+                        {cat.name}
+                      </h3>
+                    </div>
+                    <span className="text-[10px] font-mono text-muted-foreground/70 px-2 py-0.5 rounded bg-muted">
+                      ::{cat.code}
+                    </span>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {cat.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="tech-badge"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-primary/60 inline-block" />
+                        <span>{skill}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>
