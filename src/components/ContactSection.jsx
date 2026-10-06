@@ -80,7 +80,7 @@ export const ContactSection = () => {
       id="contact"
       className="section-padding relative"
     >
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-5xl w-full min-w-0">
         {/* Section Heading: 05. Contact */}
         <div className="flex items-center gap-3 mb-3">
           <span className="font-mono text-primary text-sm sm:text-base font-semibold">05.</span>
@@ -89,12 +89,12 @@ export const ContactSection = () => {
           </h2>
           <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
         </div>
-        <p className="text-sm font-mono text-muted-foreground mb-12 max-w-2xl">
+        <p className="text-sm font-mono text-muted-foreground mb-8 sm:mb-12 max-w-2xl">
           &gt; Open for software engineering internships, entry-level roles, and technical collaborations.
         </p>
 
         {/* Terminal Header Box */}
-        <div className="card-base border border-border/80 overflow-hidden mb-8 shadow-sm">
+        <div className="card-base border border-border/80 overflow-hidden mb-6 sm:mb-8 shadow-sm w-full min-w-0">
           <div className="code-window-header py-2 px-3.5 bg-muted/60">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 inline-block" />
@@ -118,9 +118,9 @@ export const ContactSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start w-full min-w-0">
           {/* Left Column: Direct Developer Channels */}
-          <div className="md:col-span-5 space-y-6">
+          <div className="md:col-span-5 space-y-5 sm:space-y-6 w-full min-w-0">
             <div>
               <h3 className="text-base font-bold text-foreground mb-1 font-mono">
                 Piyush Kumar
@@ -134,11 +134,11 @@ export const ContactSection = () => {
             </div>
 
             {/* Direct Email */}
-            <div className="card-base p-3.5 border border-border/70 flex items-center gap-3">
+            <div className="card-base p-3.5 border border-border/70 flex items-center gap-3 w-full min-w-0">
               <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center text-primary shrink-0">
                 <Mail size={15} />
               </div>
-              <div className="overflow-hidden">
+              <div className="overflow-hidden min-w-0">
                 <p className="text-[10px] font-mono text-muted-foreground uppercase">Email</p>
                 <a
                   href="mailto:piyushkr865@gmail.com"
@@ -150,15 +150,15 @@ export const ContactSection = () => {
             </div>
 
             {/* Direct Phone */}
-            <div className="card-base p-3.5 border border-border/70 flex items-center gap-3">
+            <div className="card-base p-3.5 border border-border/70 flex items-center gap-3 w-full min-w-0">
               <div className="w-8 h-8 rounded-md bg-primary/10 flex items-center justify-center text-primary shrink-0">
                 <Phone size={15} />
               </div>
-              <div>
+              <div className="overflow-hidden min-w-0">
                 <p className="text-[10px] font-mono text-muted-foreground uppercase">Phone</p>
                 <a
                   href="tel:+919507972976"
-                  className="text-xs font-mono text-foreground hover:text-primary transition-colors"
+                  className="text-xs font-mono text-foreground hover:text-primary transition-colors truncate block"
                 >
                   +91-9507972976
                 </a>
@@ -218,7 +218,7 @@ export const ContactSection = () => {
           </div>
 
           {/* Right Column: IDE Form */}
-          <div className="md:col-span-7 card-base p-4 sm:p-6 border border-border/80 shadow-md">
+          <div className="md:col-span-7 card-base p-4 sm:p-6 border border-border/80 shadow-md w-full min-w-0">
             <div className="flex items-center gap-2 pb-3 mb-5 border-b border-border/60">
               <MessageSquare size={14} className="text-primary" />
               <h3 className="text-xs font-mono font-semibold text-foreground uppercase tracking-wider">

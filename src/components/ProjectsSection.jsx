@@ -141,19 +141,19 @@ const projects = [
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="group card-base overflow-hidden card-hover flex flex-col justify-between border border-border/80 shadow-md">
-      <div>
+    <div className="group card-base overflow-hidden card-hover flex flex-col justify-between border border-border/80 shadow-md w-full min-w-0">
+      <div className="w-full min-w-0">
         {/* Engineering Window Header */}
-        <div className="code-window-header border-b border-border/70 py-2 px-3.5 bg-muted/50">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block" />
-            <span className="ml-2 font-mono text-[11px] text-muted-foreground truncate max-w-[140px] sm:max-w-[200px]">
+        <div className="code-window-header border-b border-border/70 py-2 px-3.5 bg-muted/50 flex items-center justify-between">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block shrink-0" />
+            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block shrink-0" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block shrink-0" />
+            <span className="ml-2 font-mono text-[11px] text-muted-foreground truncate max-w-[120px] min-[400px]:max-w-[180px] sm:max-w-[220px]">
               {project.repoName}
             </span>
           </div>
-          <div className="flex items-center gap-1 text-[10px] font-mono text-muted-foreground/60">
+          <div className="flex items-center gap-1 text-[10px] font-mono text-muted-foreground/60 shrink-0">
             <GitBranch size={11} className="text-primary/70" />
             <span>main</span>
           </div>
@@ -170,7 +170,7 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Card Content */}
-        <div className="p-3.5 sm:p-5 pb-0">
+        <div className="p-3.5 sm:p-5 pb-0 min-w-0">
           {/* Tech Badges */}
           <div className="flex flex-wrap gap-1.5 mb-3">
             {project.tags.map((tag) => (
@@ -184,7 +184,7 @@ const ProjectCard = ({ project }) => {
           </div>
 
           {/* Title + Subtitle */}
-          <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
+          <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-primary transition-colors duration-200">
             {project.title}
           </h3>
           <p className="text-xs font-mono text-muted-foreground font-medium mt-0.5 mb-3">
@@ -192,7 +192,7 @@ const ProjectCard = ({ project }) => {
           </p>
 
           {/* Description */}
-          <p className="text-sm text-muted-foreground leading-relaxed mb-3">
+          <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3">
             {project.description}
           </p>
 
@@ -203,7 +203,7 @@ const ProjectCard = ({ project }) => {
                 key={point}
                 className="text-xs text-muted-foreground flex items-start gap-2"
               >
-                <span className="text-primary font-mono text-xs select-none">→</span>
+                <span className="text-primary font-mono text-xs select-none shrink-0">→</span>
                 <span>{point}</span>
               </li>
             ))}
@@ -213,12 +213,12 @@ const ProjectCard = ({ project }) => {
 
       {/* Card Action Buttons */}
       <div className="p-3.5 sm:p-5 pt-0">
-        <div className="flex items-center gap-2.5 pt-3 border-t border-border/60">
+        <div className="flex flex-wrap items-center gap-2 pt-3 border-t border-border/60">
           <a
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 border border-border transition-all duration-200"
+            className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-muted-foreground hover:text-foreground bg-muted hover:bg-muted/80 border border-border transition-all duration-200 flex-1 min-[360px]:flex-initial"
           >
             <Github size={13} />
             <span>view_code</span>
@@ -228,7 +228,7 @@ const ProjectCard = ({ project }) => {
               href={project.demoUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-white bg-primary hover:bg-primary/90 transition-all duration-200"
+              className="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-mono font-medium text-white bg-primary hover:bg-primary/90 transition-all duration-200 flex-1 min-[360px]:flex-initial"
             >
               <ExternalLink size={13} />
               <span>live_demo</span>
@@ -244,9 +244,9 @@ export const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="section-padding relative"
+      className="section-padding relative w-full"
     >
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-5xl w-full min-w-0">
         {/* Section Heading: 03. Projects */}
         <div className="flex items-center gap-3 mb-3">
           <span className="font-mono text-primary text-sm sm:text-base font-semibold">03.</span>
@@ -255,11 +255,11 @@ export const ProjectsSection = () => {
           </h2>
           <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
         </div>
-        <p className="text-sm font-mono text-muted-foreground mb-12 max-w-2xl">
+        <p className="text-sm font-mono text-muted-foreground mb-8 sm:mb-12 max-w-2xl">
           &gt; End-to-end engineering projects across full-stack web development, backend APIs, desktop systems, and AI integration.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 w-full min-w-0">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

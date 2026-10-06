@@ -62,7 +62,7 @@ export const SkillsSection = () => {
       id="skills"
       className="section-padding relative"
     >
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-5xl w-full min-w-0">
         {/* Section Heading: 02. Skills */}
         <div className="flex items-center gap-3 mb-3">
           <span className="font-mono text-primary text-sm sm:text-base font-semibold">02.</span>
@@ -71,12 +71,12 @@ export const SkillsSection = () => {
           </h2>
           <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
         </div>
-        <p className="text-sm font-mono text-muted-foreground mb-10 max-w-2xl">
+        <p className="text-sm font-mono text-muted-foreground mb-8 sm:mb-10 max-w-2xl">
           &gt; Technologies, runtimes, and developer tooling used in building production software.
         </p>
 
         {/* Category filters */}
-        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 font-mono text-xs">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 font-mono text-xs max-w-full">
           <button
             onClick={() => setActiveCategory("all")}
             className={cn(
@@ -110,13 +110,13 @@ export const SkillsSection = () => {
         </div>
 
         {/* Skill grid by category cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full min-w-0">
           {displayCategories.map((cat) => {
             const Icon = cat.icon;
             return (
               <div
                 key={cat.id}
-                className="card-base p-5 border border-border/80 card-hover flex flex-col justify-between"
+                className="card-base p-4 sm:p-5 border border-border/80 card-hover flex flex-col justify-between w-full min-w-0"
               >
                 <div>
                   <div className="flex items-center justify-between pb-3 mb-4 border-b border-border/50">

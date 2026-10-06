@@ -30,7 +30,7 @@ export const CertificationsSection = () => {
       id="certifications"
       className="section-padding relative"
     >
-      <div className="container mx-auto max-w-5xl">
+      <div className="container mx-auto max-w-5xl w-full min-w-0">
         {/* Section Heading: 04. Certifications */}
         <div className="flex items-center gap-3 mb-3">
           <span className="font-mono text-primary text-sm sm:text-base font-semibold">04.</span>
@@ -39,17 +39,17 @@ export const CertificationsSection = () => {
           </h2>
           <div className="h-px bg-border flex-1 ml-4 hidden sm:block" />
         </div>
-        <p className="text-sm font-mono text-muted-foreground mb-12 max-w-2xl">
+        <p className="text-sm font-mono text-muted-foreground mb-8 sm:mb-12 max-w-2xl">
           &gt; Foundational credentials validating practical knowledge in database architecture, operating systems, and computer networks.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 w-full min-w-0">
           {certifications.map((cert) => {
             const Icon = cert.icon;
             return (
               <div
                 key={cert.title}
-                className="card-base p-6 border border-border/80 flex flex-col justify-between card-hover group shadow-sm"
+                className="card-base p-5 sm:p-6 border border-border/80 flex flex-col justify-between card-hover group shadow-sm w-full min-w-0"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">

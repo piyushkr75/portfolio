@@ -5,12 +5,12 @@ export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative py-12 px-4 bg-card/95 border-t border-border/80 font-mono text-xs">
+    <footer className="relative py-10 sm:py-12 px-4 bg-card/95 border-t border-border/80 font-mono text-xs w-full">
       {/* Top subtle cyan/indigo accent border line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 
-      <div className="container mx-auto max-w-5xl">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+      <div className="container mx-auto max-w-5xl w-full min-w-0">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-5 sm:gap-6 w-full">
           {/* Left: Dev Logo + Info */}
           <div className="text-center md:text-left space-y-1">
             <div className="flex items-center justify-center md:justify-start gap-2">
@@ -20,7 +20,6 @@ export const Footer = () => {
             <p className="text-[11px] text-muted-foreground">
               B.Tech Information Science &amp; Engineering • SIT Tumakuru
             </p>
-
           </div>
 
           {/* Center: Social / Profile Icons: GitHub | LinkedIn | LeetCode | Email */}

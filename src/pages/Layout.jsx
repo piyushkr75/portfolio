@@ -7,10 +7,14 @@ import { useEffect } from "react";
 export const Layout = () => {
   const { pathname } = useLocation();
 
-  // Enforce dark mode permanently
+  // Default to dark mode if no preference is stored
   useEffect(() => {
-    document.documentElement.classList.add("dark");
-    localStorage.setItem("theme", "dark");
+    const stored = localStorage.getItem("theme");
+    if (stored === "light") {
+      document.documentElement.classList.remove("dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
   }, []);
 
   // Scroll to top on route change
