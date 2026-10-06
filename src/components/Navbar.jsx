@@ -1,16 +1,16 @@
 import { cn } from "@/lib/utils";
-import { Menu, X, Github, Linkedin, FileText, Terminal, Mail } from "lucide-react";
+import { Menu, X, Github, Linkedin, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
-  { name: "Home", to: "/", code: "00" },
-  { name: "About", to: "/about", code: "01" },
-  { name: "Skills", to: "/skills", code: "02" },
-  { name: "Projects", to: "/projects", code: "03" },
-  { name: "Certifications", to: "/certifications", code: "04" },
-  { name: "Contact", to: "/contact", code: "05" },
+  { name: "Home", to: "/", code: "01" },
+  { name: "About", to: "/about", code: "02" },
+  { name: "Skills", to: "/skills", code: "03" },
+  { name: "Projects", to: "/projects", code: "04" },
+  { name: "Certifications", to: "/certifications", code: "05" },
+  { name: "Contact", to: "/contact", code: "06" },
 ];
 
 export const Navbar = () => {
@@ -50,10 +50,10 @@ export const Navbar = () => {
       <nav
         className={cn(
           "sticky top-0 w-full z-40 transition-all duration-300 font-mono",
-          "py-2.5 sm:py-3 bg-background/95 backdrop-blur-md border-b border-border/80 shadow-sm"
+          "py-2.5 sm:py-3 bg-background/80 dark:bg-background/85 backdrop-blur-md border-b border-border/80 shadow-sm"
         )}
       >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between gap-4">
+        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between gap-3">
           {/* Developer Logo */}
           <Link
             className="group flex items-center gap-2 text-base font-bold text-foreground tracking-tight hover:text-primary transition-colors shrink-0"
@@ -142,16 +142,27 @@ export const Navbar = () => {
             </a>
           </div>
 
-          {/* Mobile & Tablet Header Controls (< 1024px) */}
+          {/* Mobile & Tablet Header Controls (< 1024px): Resume + ThemeToggle + Hamburger */}
           <div className="flex lg:hidden items-center gap-2 shrink-0">
-            {/* Theme Toggle integrated directly in mobile header */}
+            {/* Resume button in mobile navbar */}
+            <a
+              href="/Piyush_Kumar(Resumee).pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-primary/40 text-primary bg-primary/10 hover:bg-primary hover:text-white transition-all duration-200 shrink-0"
+            >
+              <FileText size={13} />
+              <span>Resume</span>
+            </a>
+
+            {/* Theme Toggle in mobile header */}
             <ThemeToggle />
 
             {/* Hamburger button */}
             <button
               onClick={() => setIsMenuOpen((prev) => !prev)}
               type="button"
-              className="p-2 text-foreground rounded-lg border border-border bg-card/70 hover:bg-muted transition-colors flex items-center justify-center"
+              className="p-2 text-foreground rounded-lg border border-border bg-card/70 hover:bg-muted transition-colors flex items-center justify-center cursor-pointer"
               aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isMenuOpen}
             >
@@ -161,127 +172,60 @@ export const Navbar = () => {
         </div>
       </nav>
 
-      {/* Mobile Full-Screen Navigation Overlay */}
+      {/* Mobile Floating Glass Card Navigation (matching reference design) */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 z-50 bg-background/98 backdrop-blur-2xl flex flex-col lg:hidden animate-fade-in"
+          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs lg:hidden flex flex-col p-3 sm:p-4 pt-14 sm:pt-16 overflow-y-auto animate-fade-in"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
+          onClick={(e) => {
+            // Close when clicking directly on the backdrop area
+            if (e.target === e.currentTarget) {
+              setIsMenuOpen(false);
+            }
+          }}
         >
-          {/* Header inside the mobile menu modal to keep branding & close accessible */}
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between border-b border-border/80">
-            <Link
-              to="/"
-              className="flex items-center gap-2 text-base font-bold text-foreground font-mono"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span className="text-primary">&lt;PK /&gt;</span>
-              <span className="text-xs text-muted-foreground font-normal">piyush.dev</span>
-            </Link>
-
-            <div className="flex items-center gap-2">
-              <ThemeToggle />
+          {/* Floating Glassmorphic Container Card */}
+          <div
+            className="w-full max-w-sm sm:max-w-md mx-auto rounded-2xl border border-border/80 dark:border-blue-500/20 bg-card/90 dark:bg-[#070f1e]/85 backdrop-blur-xl shadow-2xl p-4 sm:p-5 flex flex-col gap-2.5 font-mono relative animate-in fade-in zoom-in-95 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Top right close button inside card */}
+            <div className="flex justify-end mb-1">
               <button
                 onClick={() => setIsMenuOpen(false)}
                 type="button"
-                className="p-2 text-foreground rounded-lg border border-border bg-card/80 hover:bg-muted transition-colors"
+                className="p-1.5 text-muted-foreground hover:text-foreground rounded-lg border border-border/70 bg-card/60 hover:bg-muted transition-colors flex items-center justify-center cursor-pointer"
                 aria-label="Close navigation menu"
               >
-                <X size={20} />
+                <X size={18} />
               </button>
             </div>
-          </div>
 
-          {/* Nav links body */}
-          <div className="flex-1 overflow-y-auto px-6 py-6 flex flex-col justify-between">
-            <div className="w-full max-w-sm mx-auto flex flex-col gap-2 font-mono">
-              <div className="flex items-center gap-2 pb-2 mb-2 border-b border-border/60 justify-center">
-                <Terminal size={14} className="text-primary" />
-                <span className="text-xs text-muted-foreground font-medium">$ nav --routes</span>
-              </div>
-
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.name}
-                  to={item.to}
-                  end={item.to === "/"}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={({ isActive }) =>
-                    cn(
-                      "text-base w-full py-3 px-4 rounded-lg transition-all flex items-center justify-between border",
-                      isActive
-                        ? "text-primary bg-primary/10 border-primary/30 font-semibold"
-                        : "text-muted-foreground hover:text-foreground hover:bg-muted/60 border-transparent"
-                    )
-                  }
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="text-xs text-primary/70">{item.code}.</span>
-                    <span>{item.name}</span>
-                  </span>
-                  <span className="text-xs text-muted-foreground/60">→</span>
-                </NavLink>
-              ))}
-            </div>
-
-            {/* Mobile bottom actions: Resume + Socials */}
-            <div className="w-full max-w-sm mx-auto pt-6 border-t border-border/70 flex flex-col gap-4">
-              <a
-                href="/Piyush_Kumar(Resumee).pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-mono font-medium bg-primary text-white shadow-md hover:bg-primary/90 transition-all"
+            {/* Nav links stack */}
+            {navItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.to}
+                end={item.to === "/"}
+                onClick={() => setIsMenuOpen(false)}
+                className={({ isActive }) =>
+                  cn(
+                    "w-full py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-between text-sm border",
+                    isActive
+                      ? "bg-blue-600/20 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.25)] font-semibold"
+                      : "bg-muted/40 dark:bg-slate-900/50 hover:bg-muted/70 dark:hover:bg-slate-800/60 border-border/60 dark:border-slate-800 text-muted-foreground hover:text-foreground"
+                  )
+                }
               >
-                <FileText size={16} />
-                <span>Download Resume.pdf</span>
-              </a>
-
-              <div className="flex items-center justify-center gap-3">
-                <a
-                  href="https://github.com/piyushkr75"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
-                  aria-label="GitHub Profile"
-                  title="GitHub Profile"
-                >
-                  <Github size={18} />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/piyush-kumar-41883a303/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
-                  aria-label="LinkedIn Profile"
-                  title="LinkedIn Profile"
-                >
-                  <Linkedin size={18} />
-                </a>
-                <a
-                  href="https://leetcode.com/piyushkr75"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
-                  aria-label="LeetCode Profile"
-                  title="LeetCode Profile"
-                >
-                  <img
-                    src="/icons/leetcode.svg"
-                    alt="LeetCode"
-                    className="w-[18px] h-[18px] object-contain"
-                  />
-                </a>
-                <a
-                  href="mailto:piyushkr865@gmail.com"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center justify-center"
-                  aria-label="Send Email"
-                  title="Send Email"
-                >
-                  <Mail size={18} />
-                </a>
-              </div>
-            </div>
+                <span className="flex items-center gap-2.5">
+                  <span className="text-primary font-medium">{item.code}.</span>
+                  <span>{item.name}</span>
+                </span>
+                <span className="text-muted-foreground/70 text-sm select-none">→</span>
+              </NavLink>
+            ))}
           </div>
         </div>
       )}
