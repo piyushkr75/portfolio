@@ -1,4 +1,5 @@
-import { ArrowRight, FileText, Github, Linkedin, Mail, ChevronDown, Terminal, Sparkles, CheckCircle2 } from "lucide-react";
+import { ArrowRight, FileText, Github, Linkedin, Mail, Terminal, Sparkles, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const techStack = [
   "C++", "Python", "JavaScript", "React", "Node.js", "FastAPI", "MongoDB", "SQL"
@@ -8,7 +9,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 pt-24 pb-16 overflow-hidden"
+      className="relative min-h-[calc(100dvh-60px)] flex flex-col items-center justify-center px-3 sm:px-4 pt-8 sm:pt-16 lg:pt-24 pb-8 sm:pb-16 overflow-hidden"
     >
       <div className="container max-w-6xl mx-auto z-10">
         {/* Main 2-Column Coder Hero */}
@@ -25,20 +26,20 @@ export const HeroSection = () => {
             </div>
 
             {/* Name */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground">
               Piyush Kumar
             </h1>
 
             {/* Role & Subtitle */}
             <div className="space-y-1">
-              <p className="text-lg sm:text-xl font-medium text-foreground/90">
+              <p className="text-base sm:text-lg md:text-xl font-medium text-foreground/90">
                 Software Developer{" "}
                 <span className="text-primary font-mono font-semibold">|</span>{" "}
                 Full-Stack{" "}
                 <span className="text-primary font-mono font-semibold">|</span>{" "}
                 DSA
               </p>
-              <p className="text-sm font-mono text-muted-foreground">
+              <p className="text-xs sm:text-sm font-mono text-muted-foreground">
                 B.Tech Information Science &amp; Engineering Student at{" "}
                 <span className="text-foreground font-semibold">
                   Siddaganga Institute of Technology
@@ -52,12 +53,12 @@ export const HeroSection = () => {
             </p>
 
             {/* Tech Stack Chips */}
-            <div className="flex flex-wrap items-center gap-2 pt-1">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 pt-1">
               <span className="text-xs font-mono text-muted-foreground mr-1">stack:</span>
               {techStack.map((tech) => (
                 <span
                   key={tech}
-                  className="px-2.5 py-1 text-xs font-mono font-medium text-muted-foreground hover:text-primary bg-card border border-border rounded transition-colors"
+                  className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[11px] sm:text-xs font-mono font-medium text-muted-foreground hover:text-primary bg-card border border-border rounded transition-colors"
                 >
                   {tech}
                 </span>
@@ -65,11 +66,11 @@ export const HeroSection = () => {
             </div>
 
             {/* CTAs and Social Icons: GitHub | LinkedIn | LeetCode | Email */}
-            <div className="flex flex-wrap items-center gap-3 pt-3">
-              <a href="#projects" className="btn-primary">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-3">
+              <Link to="/projects" className="btn-primary">
                 <span>View Projects</span>
                 <ArrowRight size={15} />
-              </a>
+              </Link>
               <a
                 href="/Piyush_Kumar(Resumee).pdf"
                 target="_blank"
@@ -81,12 +82,12 @@ export const HeroSection = () => {
               </a>
 
               {/* Social links row matching exact styling */}
-              <div className="flex items-center gap-2 pl-1">
+              <div className="flex items-center gap-1.5 sm:gap-2 pl-0 sm:pl-1">
                 <a
                   href="https://github.com/piyushkr75"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  className="p-2 sm:p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
                   aria-label="GitHub Profile"
                   title="GitHub Profile"
                 >
@@ -96,7 +97,7 @@ export const HeroSection = () => {
                   href="https://www.linkedin.com/in/piyush-kumar-41883a303/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  className="p-2 sm:p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
                   aria-label="LinkedIn Profile"
                   title="LinkedIn Profile"
                 >
@@ -106,7 +107,7 @@ export const HeroSection = () => {
                   href="https://leetcode.com/piyushkr75"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  className="p-2 sm:p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
                   aria-label="LeetCode Profile"
                   title="LeetCode Profile"
                 >
@@ -118,7 +119,7 @@ export const HeroSection = () => {
                 </a>
                 <a
                   href="mailto:piyushkr865@gmail.com"
-                  className="p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
+                  className="p-2 sm:p-2.5 rounded-lg border border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all flex items-center justify-center"
                   aria-label="Send Email"
                   title="Send Email"
                 >
@@ -149,41 +150,41 @@ export const HeroSection = () => {
               </div>
 
               {/* Code editor content */}
-              <div className="p-4 sm:p-5 bg-card/95 leading-relaxed space-y-1 overflow-x-auto select-none">
+              <div className="p-3 sm:p-5 bg-card/95 leading-relaxed space-y-1 overflow-x-hidden select-none text-[10px] sm:text-xs">
                 <div className="text-muted-foreground/50 italic">// Software Engineer Profile</div>
                 <div>
                   <span className="text-purple-400 font-semibold">const</span>{" "}
                   <span className="text-blue-400">developer</span>{" "}
                   <span className="text-foreground">=</span> &#123;
                 </div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">name</span>:{" "}
                   <span className="text-emerald-400">&quot;Piyush Kumar&quot;</span>,
                 </div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">role</span>:{" "}
                   <span className="text-emerald-400">&quot;Software Engineer&quot;</span>,
                 </div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">education</span>:{" "}
                   <span className="text-emerald-400">&quot;B.Tech ISE (2023 - Present)&quot;</span>,
                 </div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">dsaSolved</span>:{" "}
                   <span className="text-amber-300">&quot;450+ on LeetCode&quot;</span>,
                 </div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">languages</span>: [
                 </div>
-                <div className="pl-8 text-emerald-400">
+                <div className="pl-6 sm:pl-8 text-emerald-400">
                   &quot;C++&quot;, &quot;Python&quot;, &quot;JavaScript&quot;
                 </div>
-                <div className="pl-4">],</div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">],</div>
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">focus</span>:{" "}
                   <span className="text-emerald-400">&quot;Building &amp; Learning&quot;</span>,
                 </div>
-                <div className="pl-4">
+                <div className="pl-3 sm:pl-4">
                   <span className="text-sky-300">status</span>:{" "}
                   <span className="text-emerald-400">&quot;Open to Opportunities&quot;</span>
                 </div>
@@ -198,7 +199,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Hero Terminal Element */}
-        <div className="mt-8 max-w-4xl mx-auto">
+        <div className="mt-6 sm:mt-8 max-w-4xl mx-auto">
           <div className="card-base border border-border/80 bg-card/90 overflow-hidden font-mono text-xs">
             <div className="px-4 py-2 bg-muted/60 border-b border-border/60 flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -221,7 +222,7 @@ export const HeroSection = () => {
               </div>
               <div className="flex flex-wrap items-baseline gap-2">
                 <span className="text-emerald-400 font-bold">$ status</span>
-                <span className="text-primary font-semibold">OPEN TO SOFTWARE ENGINEERING OPPORTUNITIES</span>
+                <span className="text-primary font-semibold text-[10px] sm:text-xs break-words">OPEN TO SOFTWARE ENGINEERING OPPORTUNITIES</span>
                 <span className="inline-block w-2 h-3.5 bg-primary align-middle animate-[blink_1.1s_step-start_infinite]" />
               </div>
             </div>
@@ -229,7 +230,7 @@ export const HeroSection = () => {
         </div>
 
         {/* Developer Statistics Strip */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2.5 font-mono text-xs text-muted-foreground">
+        <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-x-3 sm:gap-x-5 gap-y-2 sm:gap-y-2.5 font-mono text-[11px] sm:text-xs text-muted-foreground">
           <div className="flex items-center gap-2">
             <CheckCircle2 size={13} className="text-emerald-500" />
             <span className="text-foreground font-medium">450+ DSA Problems Solved</span>
@@ -263,11 +264,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="mt-8 flex flex-col items-center gap-1 opacity-70 hover:opacity-100 transition-opacity">
-        <span className="text-[11px] font-mono text-muted-foreground tracking-wider uppercase">scroll down</span>
-        <ChevronDown className="h-4 w-4 text-primary animate-bounce" />
-      </div>
     </section>
   );
 };

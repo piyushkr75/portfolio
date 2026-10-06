@@ -43,7 +43,7 @@ export const CertificationsSection = () => {
           &gt; Foundational credentials validating practical knowledge in database architecture, operating systems, and computer networks.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {certifications.map((cert) => {
             const Icon = cert.icon;
             return (
@@ -56,7 +56,7 @@ export const CertificationsSection = () => {
                     <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300">
                       <Icon size={19} />
                     </div>
-                    <span className="text-[10px] font-mono font-medium text-muted-foreground px-2 py-0.5 rounded bg-muted border border-border">
+                    <span className="text-[10px] font-mono font-medium text-muted-foreground px-2 py-0.5 rounded bg-muted border border-border truncate max-w-[120px] sm:max-w-none">
                       ::{cert.category}
                     </span>
                   </div>

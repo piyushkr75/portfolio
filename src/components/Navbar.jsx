@@ -1,71 +1,32 @@
 import { cn } from "@/lib/utils";
 import { Menu, X, Github, Linkedin, FileText, Terminal } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
 
 const navItems = [
-  { name: "Home", href: "#hero", code: "00" },
-  { name: "About", href: "#about", code: "01" },
-  { name: "Skills", href: "#skills", code: "02" },
-  { name: "Projects", href: "#projects", code: "03" },
-  { name: "Certifications", href: "#certifications", code: "04" },
-  { name: "Contact", href: "#contact", code: "05" },
+  { name: "Home", to: "/", code: "00" },
+  { name: "About", to: "/about", code: "01" },
+  { name: "Skills", to: "/skills", code: "02" },
+  { name: "Projects", to: "/projects", code: "03" },
+  { name: "Certifications", to: "/certifications", code: "04" },
+  { name: "Contact", to: "/contact", code: "05" },
 ];
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 15);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Active section detection via IntersectionObserver
-  useEffect(() => {
-    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
-    const observers = [];
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              setActiveSection(id);
-            }
-          });
-        },
-        { rootMargin: "-20% 0px -70% 0px", threshold: 0 }
-      );
-
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((obs) => obs.disconnect());
-  }, []);
 
   return (
     <nav
       className={cn(
-        "fixed w-full z-40 transition-all duration-300 font-mono",
-        isScrolled
-          ? "py-3 bg-background/90 backdrop-blur-md border-b border-border/80 shadow-lg shadow-black/10"
-          : "py-4 bg-transparent"
+        "sticky top-0 w-full z-40 transition-all duration-300 font-mono",
+        "py-3 bg-background/90 backdrop-blur-md border-b border-border/80 shadow-lg shadow-black/10"
       )}
     >
       <div className="container flex items-center justify-between">
         {/* Developer Logo */}
-        <a
+        <Link
           className="group flex items-center gap-2 text-base font-bold text-foreground tracking-tight hover:text-primary transition-colors"
-          href="#hero"
+          to="/"
         >
           <span className="flex items-center text-primary group-hover:text-primary transition-colors">
             &lt;<span className="text-foreground group-hover:text-primary transition-colors">PK</span> /&gt;
@@ -74,28 +35,28 @@ export const Navbar = () => {
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             piyush.dev
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav with mono numbering */}
         <div className="hidden lg:flex items-center gap-1 text-xs">
-          {navItems.map((item) => {
-            const isActive = activeSection === item.href.replace("#", "");
-            return (
-              <a
-                key={item.name}
-                href={item.href}
-                className={cn(
+          {navItems.map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.to}
+              end={item.to === "/"}
+              className={({ isActive }) =>
+                cn(
                   "relative px-3 py-1.5 rounded-md transition-all duration-200 flex items-center gap-1.5",
                   isActive
                     ? "text-primary bg-primary/10 border border-primary/20 font-medium"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                )}
-              >
-                <span className="text-[10px] text-primary/70">{item.code}.</span>
-                <span>{item.name}</span>
-              </a>
-            );
-          })}
+                )
+              }
+            >
+              <span className="text-[10px] text-primary/70">{item.code}.</span>
+              <span>{item.name}</span>
+            </NavLink>
+          ))}
         </div>
 
         {/* Desktop right side: GitHub, LinkedIn, LeetCode, Resume */}
@@ -171,20 +132,23 @@ export const Navbar = () => {
             </div>
 
             {navItems.map((item) => (
-              <a
+              <NavLink
                 key={item.name}
-                href={item.href}
-                className={cn(
-                  "text-base w-full text-center py-2 rounded-lg transition-colors flex items-center justify-center gap-2",
-                  activeSection === item.href.replace("#", "")
-                    ? "text-primary bg-primary/10 border border-primary/20"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                )}
+                to={item.to}
+                end={item.to === "/"}
+                className={({ isActive }) =>
+                  cn(
+                    "text-base w-full text-center py-2 rounded-lg transition-colors flex items-center justify-center gap-2",
+                    isActive
+                      ? "text-primary bg-primary/10 border border-primary/20"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  )
+                }
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="text-xs text-primary/70">{item.code}.</span>
                 <span>{item.name}</span>
-              </a>
+              </NavLink>
             ))}
 
             {/* Mobile social + resume */}

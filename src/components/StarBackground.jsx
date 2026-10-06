@@ -75,21 +75,21 @@ export const StarBackground = () => {
       {/* Layer 4 — Soft Radial Glows Behind Major Sections */}
       {/* Hero Blue Glow */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full blur-[140px] opacity-15 dark:opacity-25 pointer-events-none"
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(700px,100vw)] h-[500px] rounded-full blur-[140px] opacity-15 dark:opacity-25 pointer-events-none"
         style={{
           background: "radial-gradient(circle, rgba(59, 130, 246, 0.45) 0%, rgba(37, 99, 235, 0) 70%)",
         }}
       />
       {/* Skills Cyan Glow */}
       <div
-        className="absolute top-[38%] right-[-10%] w-[550px] h-[550px] rounded-full blur-[160px] opacity-10 dark:opacity-15 pointer-events-none"
+        className="absolute top-[38%] right-0 w-[min(550px,60vw)] h-[550px] rounded-full blur-[160px] opacity-10 dark:opacity-15 pointer-events-none"
         style={{
           background: "radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%)",
         }}
       />
       {/* Projects Violet Glow */}
       <div
-        className="absolute top-[62%] left-[-10%] w-[600px] h-[600px] rounded-full blur-[160px] opacity-10 dark:opacity-20 pointer-events-none"
+        className="absolute top-[62%] left-0 w-[min(600px,60vw)] h-[600px] rounded-full blur-[160px] opacity-10 dark:opacity-20 pointer-events-none"
         style={{
           background: "radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%)",
         }}

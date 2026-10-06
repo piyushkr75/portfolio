@@ -55,19 +55,7 @@
 }
 
 @layer base {
-  :root {
-    --background: 220 20% 97%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-border: 220 13% 90%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 0 0% 100%;
-    --border: 220 13% 91%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
-    --accent: 217 91% 60%;
-  }
-
+  :root,
   .dark {
     /* Sophisticated near-black / charcoal developer palette with subtle navy */
     --background: 224 45% 4.5%;
@@ -92,6 +80,7 @@
   html {
     @apply scroll-smooth;
     scroll-padding-top: 5rem;
+    overflow-x: hidden;
   }
 
   body {
@@ -100,16 +89,19 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
 }
 
-/* Container utility */
+/* Container utility — responsive with fluid padding */
 @utility container {
   margin-inline: auto;
-  padding-inline: 1.5rem;
+  padding-inline: 1rem;
+  width: 100%;
 
   @media (width >= 640px) {
     max-width: 640px;
+    padding-inline: 1.5rem;
   }
   @media (width >= 768px) {
     max-width: 768px;
@@ -124,10 +116,17 @@
 
 /* Section shared styles */
 @utility section-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   padding-left: 1rem;
   padding-right: 1rem;
+
+  @media (width >= 640px) {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 
   @media (width >= 768px) {
     padding-top: 6.5rem;
@@ -153,16 +152,17 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.375rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-family: var(--font-mono);
   background: linear-gradient(135deg, hsl(217 91% 60%), hsl(224 85% 50%));
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
   transition: all 0.25s ease;
+  white-space: nowrap;
   &:hover {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
     transform: translateY(-1px);
@@ -171,6 +171,10 @@
   &:active {
     transform: translateY(0);
   }
+  @media (width >= 640px) {
+    padding: 0.625rem 1.375rem;
+    font-size: 0.875rem;
+  }
 }
 
 @utility btn-outline {
@@ -178,30 +182,39 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.625rem 1.375rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-family: var(--font-mono);
   border: 1px solid hsl(var(--border));
   background-color: hsla(var(--card), 0.7);
   color: hsl(var(--foreground));
   backdrop-filter: blur(8px);
   transition: all 0.25s ease;
+  white-space: nowrap;
   &:hover {
     border-color: hsl(var(--primary));
     color: hsl(var(--primary));
     background-color: hsla(var(--primary), 0.08);
     transform: translateY(-1px);
   }
+  @media (width >= 640px) {
+    padding: 0.625rem 1.375rem;
+    font-size: 0.875rem;
+  }
 }
 
 /* Section heading style with coder numbering */
 @utility section-heading {
-  font-size: 1.875rem;
+  font-size: 1.5rem;
   font-weight: 700;
   letter-spacing: -0.025em;
   margin-bottom: 0.75rem;
+
+  @media (width >= 640px) {
+    font-size: 1.875rem;
+  }
 
   @media (width >= 768px) {
     font-size: 2.25rem;
@@ -213,9 +226,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
+  padding: 0.3rem 0.625rem;
   border-radius: 0.375rem;
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
   font-weight: 500;
   font-family: var(--font-mono);
   background-color: hsla(var(--muted), 0.6);
@@ -228,6 +241,10 @@
     color: hsl(var(--primary));
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  }
+  @media (width >= 640px) {
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
   }
 }
 
@@ -244,15 +261,20 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.625rem 1rem;
+  padding: 0.5rem 0.75rem;
   background-color: hsla(var(--muted), 0.7);
   border-bottom: 1px solid hsl(var(--border));
   border-top-left-radius: 0.75rem;
   border-top-right-radius: 0.75rem;
+
+  @media (width >= 640px) {
+    padding: 0.625rem 1rem;
+  }
 }
 
 #root {
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
+  overflow-x: hidden;
 }

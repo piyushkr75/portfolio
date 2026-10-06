@@ -76,11 +76,11 @@ export const SkillsSection = () => {
         </p>
 
         {/* Category filters */}
-        <div className="flex flex-wrap items-center gap-2 mb-10 font-mono text-xs">
+        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 font-mono text-xs">
           <button
             onClick={() => setActiveCategory("all")}
             className={cn(
-              "px-3.5 py-1.5 rounded-md transition-all duration-200 border flex items-center gap-1.5",
+              "px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-md transition-all duration-200 border flex items-center gap-1 sm:gap-1.5",
               activeCategory === "all"
                 ? "bg-primary text-white border-primary shadow-sm"
                 : "bg-card text-muted-foreground hover:text-foreground border-border hover:border-primary/40"
@@ -96,7 +96,7 @@ export const SkillsSection = () => {
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
                 className={cn(
-                  "px-3.5 py-1.5 rounded-md transition-all duration-200 border flex items-center gap-1.5",
+                  "px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-md transition-all duration-200 border flex items-center gap-1 sm:gap-1.5",
                   activeCategory === cat.id
                     ? "bg-primary text-white border-primary shadow-sm"
                     : "bg-card text-muted-foreground hover:text-foreground border-border hover:border-primary/40"
@@ -110,7 +110,7 @@ export const SkillsSection = () => {
         </div>
 
         {/* Skill grid by category cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
           {displayCategories.map((cat) => {
             const Icon = cat.icon;
             return (

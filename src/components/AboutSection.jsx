@@ -1,4 +1,5 @@
 import { GraduationCap, Terminal, GitBranch, Code2, Server, Cpu, Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const AboutSection = () => {
   return (
@@ -89,9 +90,9 @@ export const AboutSection = () => {
 
             {/* CTAs and Social Icons: GitHub | LinkedIn | LeetCode | Email */}
             <div className="flex flex-wrap items-center gap-3 pt-1">
-              <a href="#contact" className="btn-primary text-xs">
+              <Link to="/contact" className="btn-primary text-xs">
                 <span>Connect With Me</span>
-              </a>
+              </Link>
               <a
                 href="/Piyush_Kumar(Resumee).pdf"
                 target="_blank"

@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/((?!assets|icons|projects|Piyush_Kumar|favicon|logo|piyush|vite).*)", "destination": "/index.html" }
+  ]
+}

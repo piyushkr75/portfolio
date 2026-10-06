@@ -110,7 +110,7 @@ export const ContactSection = () => {
             </span>
           </div>
 
-          <div className="p-4 sm:p-5 font-mono text-xs leading-relaxed space-y-2 bg-card/90">
+          <div className="p-3 sm:p-5 font-mono text-xs leading-relaxed space-y-2 bg-card/90">
             <div className="text-emerald-400 font-bold">$ ./contact-piyush</div>
             <p className="text-muted-foreground text-xs sm:text-sm">
               &quot;Ready to build something impactful? Let&apos;s connect and discuss software engineering, full-stack systems, or opportunities.&quot;
@@ -118,7 +118,7 @@ export const ContactSection = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-start">
           {/* Left Column: Direct Developer Channels */}
           <div className="md:col-span-5 space-y-6">
             <div>
@@ -218,7 +218,7 @@ export const ContactSection = () => {
           </div>
 
           {/* Right Column: IDE Form */}
-          <div className="md:col-span-7 card-base p-6 border border-border/80 shadow-md">
+          <div className="md:col-span-7 card-base p-4 sm:p-6 border border-border/80 shadow-md">
             <div className="flex items-center gap-2 pb-3 mb-5 border-b border-border/60">
               <MessageSquare size={14} className="text-primary" />
               <h3 className="text-xs font-mono font-semibold text-foreground uppercase tracking-wider">

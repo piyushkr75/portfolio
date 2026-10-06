@@ -149,7 +149,7 @@ const ProjectCard = ({ project }) => {
             <span className="w-2.5 h-2.5 rounded-full bg-red-500/70 inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70 inline-block" />
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/70 inline-block" />
-            <span className="ml-2 font-mono text-[11px] text-muted-foreground truncate max-w-[200px]">
+            <span className="ml-2 font-mono text-[11px] text-muted-foreground truncate max-w-[140px] sm:max-w-[200px]">
               {project.repoName}
             </span>
           </div>
@@ -160,7 +160,7 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Dashboard Image Frame */}
-        <div className="h-48 overflow-hidden bg-black/40 border-b border-border/50 relative">
+        <div className="h-36 sm:h-48 overflow-hidden bg-black/40 border-b border-border/50 relative">
           <img
             src={project.image}
             alt={project.title}
@@ -170,7 +170,7 @@ const ProjectCard = ({ project }) => {
         </div>
 
         {/* Card Content */}
-        <div className="p-5 pb-0">
+        <div className="p-3.5 sm:p-5 pb-0">
           {/* Tech Badges */}
           <div className="flex flex-wrap gap-1.5 mb-3">
             {project.tags.map((tag) => (
@@ -212,7 +212,7 @@ const ProjectCard = ({ project }) => {
       </div>
 
       {/* Card Action Buttons */}
-      <div className="p-5 pt-0">
+      <div className="p-3.5 sm:p-5 pt-0">
         <div className="flex items-center gap-2.5 pt-3 border-t border-border/60">
           <a
             href={project.githubUrl}
@@ -259,7 +259,7 @@ export const ProjectsSection = () => {
           &gt; End-to-end engineering projects across full-stack web development, backend APIs, desktop systems, and AI integration.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

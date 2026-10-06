@@ -1,4 +1,5 @@
 import { ArrowUp, Github, Linkedin, Mail } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -73,15 +74,16 @@ export const Footer = () => {
             <span className="text-[11px]">
               © {currentYear} Piyush Kumar
             </span>
-            <a
-              href="#hero"
+            <Link
+              to="/"
               className="p-2 rounded-md text-muted-foreground hover:text-primary hover:bg-muted border border-border/60 transition-all flex items-center gap-1"
               aria-label="Back to top"
               title="Return to top"
+              onClick={() => window.scrollTo(0, 0)}
             >
               <ArrowUp size={13} />
               <span className="text-[10px] uppercase">top</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
