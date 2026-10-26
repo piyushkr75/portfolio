@@ -3,6 +3,32 @@ import { ExternalLink, Github, GitBranch, Terminal } from "lucide-react";
 const projects = [
   {
     id: 1,
+    title: "ContractLens",
+    repoName: "piyushkr75/ContractLens",
+    subtitle: "AI Contract Risk Intelligence Platform",
+    description:
+      "An enterprise-grade contract analysis platform that identifies hidden liabilities, flags asymmetric indemnities, and generates clause counter-proposals using Gemini AI and FAISS vector search.",
+    image: "/projects/contractlens.jpg",
+    tags: [
+      "FastAPI",
+      "Python",
+      "React",
+      "Gemini AI",
+      "FAISS",
+      "Tailwind CSS",
+      "PyMuPDF",
+    ],
+    highlights: [
+      "Clause-by-clause legal risk audit with automated counter-proposals",
+      "RAG conversational Q&A with verified citation validation",
+      "In-memory FAISS vector search with prompt injection defense",
+      "Zero-database architecture with PDF/DOCX ingestion & report export",
+    ],
+    githubUrl: "https://github.com/piyushkr75/ContractLens",
+    demoUrl: null,
+  },
+  {
+    id: 2,
     title: "CodeSense AI",
     repoName: "piyushkr75/CodeSense-AI",
     subtitle: "AI-Powered Code Reviewer",
@@ -29,7 +55,7 @@ const projects = [
     demoUrl: null,
   },
   {
-    id: 2,
+    id: 3,
     title: "HealthPulse",
     repoName: "piyushkr75/HealthPulse-Hospital-Patient-Monitoring-System",
     subtitle: "Hospital Patient Monitoring System",
@@ -48,7 +74,7 @@ const projects = [
     demoUrl: null,
   },
   {
-    id: 3,
+    id: 4,
     title: "HireHub",
     repoName: "piyushkr75/HireHub-Job-Portal",
     subtitle: "Job Portal",
@@ -66,7 +92,7 @@ const projects = [
     demoUrl: null,
   },
   {
-    id: 4,
+    id: 5,
     title: "StockSense Pro",
     repoName: "piyushkr75/StockSense-Pro",
     subtitle: "Stock Analysis Platform",
@@ -84,7 +110,7 @@ const projects = [
     demoUrl: null,
   },
   {
-    id: 5,
+    id: 6,
     title: "AI Therapist",
     repoName: "piyushkr75/AI-Therapist",
     subtitle: "Conversational Mental Health Assistant",
@@ -102,7 +128,7 @@ const projects = [
     demoUrl: null,
   },
   {
-    id: 6,
+    id: 7,
     title: "Bank Statement Extractor",
     repoName: "piyushkr75/bank_statement-extractor",
     subtitle: "AI Document / Data Extraction",
@@ -120,7 +146,7 @@ const projects = [
     demoUrl: null,
   },
   {
-    id: 7,
+    id: 8,
     title: "Movie Recommender System",
     repoName: "piyushkr75/movie_recommender_system",
     subtitle: "Machine Learning / Recommendation System",

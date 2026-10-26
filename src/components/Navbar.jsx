@@ -132,7 +132,7 @@ export const Navbar = () => {
             <ThemeToggle className="ml-0.5" />
 
             <a
-              href="/Piyush_Kumar(Resumee).pdf"
+              href="/Piyush_Resume__.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="ml-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium border border-primary/40 text-primary bg-primary/10 hover:bg-primary hover:text-white transition-all duration-200 shrink-0"
@@ -146,7 +146,7 @@ export const Navbar = () => {
           <div className="flex lg:hidden items-center gap-2 shrink-0">
             {/* Resume button in mobile navbar */}
             <a
-              href="/Piyush_Kumar(Resumee).pdf"
+              href="/Piyush_Resume__.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-mono font-medium border border-primary/40 text-primary bg-primary/10 hover:bg-primary hover:text-white transition-all duration-200 shrink-0"

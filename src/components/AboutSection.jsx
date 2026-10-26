@@ -95,7 +95,7 @@ export const AboutSection = () => {
                   <span>Connect With Me</span>
                 </Link>
                 <a
-                  href="/Piyush_Kumar(Resumee).pdf"
+                  href="/Piyush_Resume__.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline text-xs justify-center"

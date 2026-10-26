@@ -73,7 +73,7 @@ export const HeroSection = () => {
                   <ArrowRight size={15} />
                 </Link>
                 <a
-                  href="/Piyush_Kumar(Resumee).pdf"
+                  href="/Piyush_Resume__.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline justify-center"
